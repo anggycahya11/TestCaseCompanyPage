@@ -1,5 +1,321 @@
 Feature: [iOS] Company Page Feature
 
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaCompanyPage
+    Scenario Outline: [iOS] [Manual] User access company page via strean at company page
+      Given User login using "Trading" account
+      When User click stream menu
+      And User click "<section>" with "<selection>" option
+      And User find stream post with contain "STOCK_SYMBOL"
+      And User click "STOCK_SYMBOL"
+      Then User will redirect to "STOCK_SYMBOL" company page
+      Examples:
+          | section           | selection          |
+          | Stream            | Trending           |
+          | Stream            | Followed           |
+          | Stream            | All                |
+          | Stream            | People             |
+          | Stream            | Watchlist          |
+          | Reports           | All                |
+          | Reports           | Laporan Keuangan   |
+          | Reports           | RUPS/Public Expose |
+          | Reports           | Kepimilikan saham  |
+          | Reports           | Dividend           |
+          | Reports           | Corp. Action       |
+          | Reports           | Lainnya            |
+          | Prediksi          |                    |
+          | Polling           |                    |
+          | Insider           |                    |
+          | Charts            |                    |
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaComment
+    Scenario Outline: [iOS] [Manual] [IDC] User access company page via comment
+      Given User login using "Trading" account
+      And User click stream menu
+      And User click "<section>" with "<selection>" option
+      And User click icon comment on post
+      And User find comment stream with "STOCK_SYMBOL"
+      And User click "STOCK_SYMBOL"
+      And User click "<section>" with "<selection>" option
+    Examples:
+      | section           | selection          |
+      | Stream            | Trending           |
+      | Stream            | Followed           |
+      | Stream            | All                |
+      | Stream            | People             |
+      | Stream            | Watchlist          |
+      | Reports           | All                |
+      | Reports           | Laporan Keuangan   |
+      | Reports           | RUPS/Public Expose |
+      | Reports           | Kepimilikan saham  |
+      | Reports           | Dividend           |
+      | Reports           | Corp. Action       |
+      | Reports           | Lainnya            |
+      | Prediksi          |                    |
+      | Polling           |                    |
+      | Insider           |                    |
+      | Charts            |                    |
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaProfile
+  Scenario Outline: [iOS] [CompanyPage] User Access Company page via user profile
+    Given User login using "Trading" account
+    When User click search menu
+    And User click search textbox
+    And User input query "Livaldo"
+    And User will redirect to profile "Livaldo"
+    And User click "<section>" on profile stream menu
+    And User find stream post that contains "STOCK_SYMBOL"
+    And User click "STOCK_SYMBOL"
+    Then User will redirect to "STOCK_SYMBOL" company page
+      Examples:
+        | section    |
+        | Ideas      |
+        | Replies    |
+        | Charts     |
+        | Prediction |
+        | Polling    |
+        | Liked      |
+        | Saved      |
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaCommentProfilePost @SIE
+  Scenario Outline: [iOS] [CompanyPage] [IDC] [SIE] User access company page via comment on profile post
+    Given User login using "Trading" account
+    When User click search menu
+    And User click search textbox
+    And User input query "Livaldo"
+    And User will redirect to profile "Livaldo"
+    And User click "<section>" on profile stream menu
+    And User find comment stream post that contains "STOCK_SYMBOL"
+    And User click "STOCK_SYMBOL"
+    Then User will redirect to "STOCK_SYMBOL" company page
+    Examples:
+      | section    |
+      | Ideas      |
+      | Replies    |
+      | Charts     |
+      | Prediction |
+      | Polling    |
+      | Liked      |
+      | Saved      |
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaNotification
+    Scenario Outline: [iOS] [CompanyPage] [Manual] User access company page via notification
+      Given User login using "TRADING" account
+      And User click stream menu
+      And User click notification icon
+      And User click "<notification type>"
+      And User find notification that contains "STOCK_SYMBOL"
+      And User click notification that contains "STOCK_SYMBOL"
+      Then User will redirect to the post
+      And User click "STOCK_SYMBOL" on the post
+      Then User will redirect to "STOCK_SYMBOL" company page
+        Examples:
+          | notification type |
+          | Semua             |
+          | Mention           |
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaNotificationReport
+    Scenario: [iOS] [IDC] [Manual] [CompanyPage]
+      Given User login using "TRADING" account
+      And User click watchlist menu
+      And User icon "<reports>" on the top right watchlist
+      Then User will redirect to Laporan page
+      And User find report that contains "STOCK_SYMBOL"
+      And User click on of the list that contains "STOCK_SYMBOL"
+      And User will redirect to the post
+      And User click "STOCK_SYMBOL" on the post
+      Then User will see popup reports "STOCK_SYMBOL"
+      And User click "STOCK_SYMBOL" on popup
+      Then User will redirect to "STOCK_SYMBOL" company page
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaStreamCompanyPage
+      Scenario Outline: [iOS] [Manual] [IDC] User Access Company page Via Stream Company Page
+        Given User login using "Trading" account
+        And User click search menu
+        And User click search textbox
+        And User input query "STOCK_SYMBOL"
+        And User see Company "STOCK_SYMBOL" is displayed in the search result
+        And User click company symbol "STOCK_SYMBOL"
+        And User see "STOCK_SYMBOL" company page
+        And User scroll to stream
+        And User click "<section>" with "<selection>" option
+        And User find stream with contain "STOCK_SYMBOL"
+        And User click "STOCK_SYMBOL"
+        Then User will redirect to "STOCK_SYMBOL" company page
+
+        Examples:
+          | section           | selection          |
+          | All               |                    |
+          | Berita            |                    |
+          | Reports           | All                |
+          | Reports           | Laporan Keuangan   |
+          | Reports           | RUPS/Public Expose |
+          | Reports           | Kepimilikan saham  |
+          | Reports           | Dividend           |
+          | Reports           | Corp. Action       |
+          | Reports           | Lainnya            |
+          | Research          |                    |
+          | Ide               |                    |
+          | Prediksi          |                    |
+          | Polling           |                    |
+          | Insider           |                    |
+          | Charts            |                    |
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaStreamCompanyPage
+  Scenario Outline: [iOS] [Manual] [IDC] User Access Company page Via Stream Company Page
+    Given User login using "Trading" account
+    And User click search menu
+    And User click search textbox
+    And User input query "STOCK_SYMBOL"
+    And User see Company "STOCK_SYMBOL" is displayed in the search result
+    And User click company symbol "STOCK_SYMBOL"
+    And User see "STOCK_SYMBOL" company page
+    And User scroll to stream
+    And User click "<section>" with "<selection>" option
+    And User find comment with contain "STOCK_SYMBOL"
+    And User click "STOCK_SYMBOL"
+    Then User will redirect to "STOCK_SYMBOL" company page
+
+    Examples:
+      | section           | selection          |
+      | All               |                    |
+      | Berita            |                    |
+      | Reports           | All                |
+      | Reports           | Laporan Keuangan   |
+      | Reports           | RUPS/Public Expose |
+      | Reports           | Kepimilikan saham  |
+      | Reports           | Dividend           |
+      | Reports           | Corp. Action       |
+      | Reports           | Lainnya            |
+      | Research          |                    |
+      | Ide               |                    |
+      | Prediksi          |                    |
+      | Polling           |                    |
+      | Insider           |                    |
+      | Charts            |                    |
+
+  @CompanyPage @NotaAutomated @iOS @Positive @IDC @AccessCompanyPageViaTrendingSection @SIE
+    Scenario: [iOS] [CompanyPage] User access company page via trending section
+      Given User login using "Trading" account
+      And User click search menu
+      And User scroll until see Trending section
+      And User click one of list trending stocks
+      Then User will redirect to "STOCK_SYMBOL" company page
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaWatchlist
+    Scenario: [iOS] [CompanyPage] User access company page via watchlist
+      Given User login using "Trading" account
+      And User click watchlist menu
+      And User click icon plus (+)
+      And User input "STOCK_SYMBOL" on search box
+      And User click "STOCK_SYMBOL"
+      And User back to watchlist menu
+      And User click "STOCK_SYMBOL" in watchlist
+      Then User will redirect to "STOCK_SYMBOL" company page
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaChat @SIE
+    Scenario: [iOS] [CompanyPage] [Manual] User access company page via chat
+      Given User login using "Trading" account
+      And User click chat menu
+      And User send chat in group with chat "STOCK_SYMBOL"
+      And User success send chat
+      And User click chat with "STOCK_SYMBOL" in list chat
+      Then User will redirect to "STOCK_SYMBOL" company page
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaScreener
+    Scenario: [iOS] [CompanyPage] [Manual] User access company page via screener
+      Given User login using "Trading" account
+      And User click search menu
+      And User click screener entry point
+      And User click one of list Preset Screener
+      And User click one of preset list
+      And User click one of "STOCK_SYMBOL" of the list
+      Then User will redirect to "STOCK_SYMBOL" company page
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaHotList
+    Scenario Outline: [iOS] [CompanyPage] [Manual] User access company page via hot list
+      Given User login using "Trading" account
+      And User click search menu
+      And User scroll to ranking section
+      And User click one of "STOCK_SYMBOL" on hot list "<category>"
+      Then User will redirect to "STOCK_SYMBOL" company page
+        Examples:
+          | category    |
+          | Most active |
+          | Top Gainer  |
+          | Top Loser   |
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @AccessCompanyPageViaSector
+      Scenario Outline: [iOS] [Manual] [CompanyPage] User access company page via sector
+        Given User login using "Trading" account
+        And User click search menu
+        And user scroll to "<sector>" section
+        And User click sector menu
+        And User will redirect to the selected sector page
+        And User click one "STOCK_SYMBOL" in the list sub sector
+        Then User will redirect to "STOCK_SYMBOL" company page
+          Examples:
+            | sector        |
+            | BASIC-IND     |
+            | FINANCE       |
+            | CYLICAL       |
+            | ENERGY        |
+            | PROPERTY      |
+            | INFRASTRUCTURE|
+            | INDUSTRIAL    |
+            | NON-CYCLICAL  |
+            | TRANSPORT     |
+            | TECHNOLOGY    |
+            | HEALTH        |
+
+  @CompanyPage @NotAutomated @iOS @IDC @Positive @AccessCompanyPageViaRanking
+    Scenario Outline: [iOS] [Manual] [CompanyPage] access company page via ranking
+      Given User login using "Trading" account
+      And User click search menu
+      And User scroll to "<index>" section
+      And User click see more in index section
+      And User click one of "index" list
+      And User will redirect to the selected index list
+      And User click one of "STOCK_SYMBOL" on the index list
+      Then User will redirect to "STOCK_SYMBOL" company page
+        Examples:
+          | index     |
+          | IDXBUMN20 |
+          | SMinfra18 |
+          | IDXSMC-LIQ|
+          | INFOBANK15|
+          | IDXG30    |
+          | BISNIS-27 |
+          | MNC36     |
+          | IDXMESBUMN|
+          | IDXSMC-COM|
+          | DBX       |
+          | MBX       |
+          | Investor33|
+          | IDXQ30    |
+          | I-GRADE   |
+          | IDXV30    |
+          | PRIMBANK10|
+          | ESGQKEHATI|
+          | PEFINDO25 |
+          | KOMPAS100 |
+          | IDX80     |
+          | ESGSKEHATI|
+          | IDXESGL   |
+          | ABX       |
+          | IDXSHAGROW|
+          | JII70     |
+          | IDXLQ45LCL|
+
+ @CompanyPage @NotAutomated @iOS @IDC @AccessCompanyPageViaRealPortofolio
+   Scenario: [iOS] [Manual] [IDC] User access company page via real portofolio
+    Given User login using "Trading" account
+    And User click portfolio menu
+    And User input trading pin "Trading"
+    And User will redirect to Real Portofolio page
+    And User click one of the list stock in portofolio page
+    And User click "STOCK_SYMBOL" on the top of portofolio detail
+    Then User will redirect to "STOCK_SYMBOL" company page
+
   @CompanyPage @NotAutomated @iOS @Positive @IDC
   Scenario: [iOS] [CompanyPage] User See Keystats In Company Page
     Given User login using "Trading" account
@@ -137,6 +453,45 @@ Feature: [iOS] Company Page Feature
     And User see "ANALYSIS" in company page
     Then User click "ANALYSIS" in company page
 
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @PEBand @PBVBand @UserSwitchPriceEarnings
+    Scenario Outline: [iOS] [CompapnyPage] [Manual] User explore price earnings in analysis
+    Given User login using "Trading" account
+    When User click search menu
+    And User click search textbox
+    And User input query "STOCK_SYMBOL"
+    And User see Company "STOCK_SYMBOL" is displayed in the search result
+    And User click company symbol "STOCK_SYMBOL"
+    And User see "STOCK_SYMBOL" company page
+    And User see "ANALYSIS" in company page
+    And User click "<PE ratio>", "<period>" section
+    Then User see result price earning data
+      Examples:
+        | PE ratio        | period   |
+        | PE Band(TTM)    | 3 tahun  |
+        | PE Band(TTM)    | 5 tahun  |
+        | PE Band(TTM)    | 10 tahun |
+        | Forward PE Band | 3 tahun  |
+        | Forward PE Band | 5 tahun  |
+        | Forward PE Band | 10 tahun |
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @PEBand @PBVBand @UserExplorePBV
+  Scenario Outline: [iOS] [CompapnyPage] [Manual] User explore PBV in analysis
+    Given User login using "Trading" account
+    When User click search menu
+    And User click search textbox
+    And User input query "STOCK_SYMBOL"
+    And User see Company "STOCK_SYMBOL" is displayed in the search result
+    And User click company symbol "STOCK_SYMBOL"
+    And User see "STOCK_SYMBOL" company page
+    And User see "ANALYSIS" in company page
+    And User click "<pbv>", "<period>" section
+    Then User see result pbv data
+    Examples:
+      | pbv    | period   |
+      | pbv    | 3 tahun  |
+      | pbv    | 5 tahun  |
+      | pbv    | 10 tahun |
+
   @CompanyPage @NotAutomated @iOS @Positive @IDC
   Scenario: [iOS] [CompanyPage] User See Finansial In Company Page
     Given User login using "Trading" account
@@ -256,7 +611,7 @@ Feature: [iOS] Company Page Feature
   | 16 tahun    |
   | 17 tahun    |
 
-  @CompanyPage @NotAutomated @iOS @Positive @IDC
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @Perbandingan
   Scenario: [iOS] [CompanyPage] User See Perbandingan In Company Page
     Given User login using "Trading" account
     When User click search menu
@@ -268,7 +623,7 @@ Feature: [iOS] Company Page Feature
     And User see "PERBANDINGAN" in company page
     Then User click "PERBANDINGAN" in company page
 
-  @CompanyPage @NotAutomated @iOS @Positive @IDC
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @CorpAction
   Scenario: [iOS] [CompanyPage] User See Corp Action In Company Page
     Given User login using "Trading" account
     When User click search menu
@@ -279,6 +634,31 @@ Feature: [iOS] Company Page Feature
     And User see "STOCK_SYMBOL" company page
     And User see "CORP ACTION" in company page
     Then User click "CORP ACTION" in company page
+
+  @CompanyPage @NotAutomated @iOS @Positive @IDC @CorpAction
+  Scenario Outline: [iOS] [CompanyPage] User access tab menu Corp Action In Company Page
+    Given User login using "Trading" account
+    When User click search menu
+    And User click search textbox
+    And User input query "STOCK_SYMBOL"
+    And User see Company "STOCK_SYMBOL" is displayed in the search result
+    And User click company symbol "STOCK_SYMBOL"
+    And User see "STOCK_SYMBOL" company page
+    And User see "CORP ACTION" in company page
+    Then User click "CORP ACTION" in company page
+    And User click "<corp action menu>" on corp action
+    Then User see corp action menu to the selected tab
+      Examples:
+        | corp action menu |
+        | Semua            |
+        | Dividen          |
+        | Stock Split      |
+        | Reverse Split    |
+        | Right Issue      |
+        | Warrant          |
+        | Bonus            |
+        | Tender Offer     |
+        | RUPS             |
 
   @CompanyPage @NotAutomated @iOS @Positive @IDC
   Scenario: [iOS] [CompanyPage] User See Insider In Company Page
@@ -293,7 +673,7 @@ Feature: [iOS] Company Page Feature
     Then User click "INSIDER" in company page
 
   @CompanyPage @NotAutomated @iOS @Positive @IDC
-  Scenario: [iOS] [CompanyPage] User See Profil In Company Page
+  Scenario: [iOS] [CompanyPage] User See Profile In Company Page
     Given User login using "Trading" account
     When User click search menu
     And User click search textbox
@@ -302,7 +682,7 @@ Feature: [iOS] Company Page Feature
     And User click company symbol "STOCK_SYMBOL"
     And User see "STOCK_SYMBOL" company page
     And User see "PROFIL" insider page
-    Then User click "PROFIL" in company page
+    Then User click "PROFILE" in company page
 
   @CompanyPage @NotAutomate @iOS @Positive @CompanyBackground @IDC @Manual
     Scenario: [iOS] [CompanyPage] [Manual] User show more Company Background on Company page
@@ -328,7 +708,7 @@ Feature: [iOS] Company Page Feature
     And User see "STOCK_SYMBOL" company page
     And User see "PROFIL" insider page
     And User scroll to shareholder composition
-    And User change <"investor type">, "<date>"
+    And User change "<investor type>", "<date>"
     Then User see shareholder composition data with selected option
         Examples:
           | investor type | date    |
